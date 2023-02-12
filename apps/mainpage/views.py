@@ -1,7 +1,10 @@
+import datetime
 import json
 
 import requests
 from django.shortcuts import render
+
+from apps.mainpage.models import TelegramBot
 
 bot_token = '5781542580:AAFQs7jLyx_Fioru3gYxo9YdtOx1sQwvNzc'
 chat_id = '-1001704309348'
