@@ -98,14 +98,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+if 'REDIS_URL' in os.environ:
+    CELERY_BROKER_URL = os.environ['REDIS_URL']
+    CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+else:
+    CELERY_BROKER_URL = 'redis://localhost:6379/0'
+    CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
-app = Celery('core')
-app.config_from_object('django.conf:settings', namespace='CELERY')
-app.autodiscover_tasks()
 
-CELERY_BROKER_URL = "redis://:ped64b39e7a5cdf3d55c70f774397a97f5fd7ebeddee2af4ce6a96eb6bd935352@ec2-3-248-94-150.eu-west-1.compute.amazonaws.com:29200/0"
-CELERY_RESULT_BACKEND = "redis://:ped64b39e7a5cdf3d55c70f774397a97f5fd7ebeddee2af4ce6a96eb6bd935352@ec2-3-248-94-150.eu-west-1.compute.amazonaws.com:29200/0"
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SELERLIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Istanbul'
+
 
 DATABASES = {
     'default': {
