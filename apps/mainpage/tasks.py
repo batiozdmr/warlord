@@ -1,12 +1,20 @@
 import datetime
+import os
 
 import requests
-from celery import shared_task
+from celery import Celery
 
 from apps.mainpage.models import TelegramBot
 
+app = Celery('myapp')
 
-@shared_task()
+app.conf.update(
+    BROKER_URL=os.environ['REDIS_URL'],
+    CELERY_RESULT_BACKEND=os.environ['REDIS_URL']
+)
+
+
+@app.task()
 def date_kick():
     bot_token = '5781542580:AAFQs7jLyx_Fioru3gYxo9YdtOx1sQwvNzc'
     chat_id = '-1001704309348'
