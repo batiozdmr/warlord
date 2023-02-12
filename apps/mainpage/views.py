@@ -1,10 +1,8 @@
-import datetime
 import json
+import os
 
 import requests
 from django.shortcuts import render
-
-from apps.mainpage.models import TelegramBot
 
 bot_token = '5781542580:AAFQs7jLyx_Fioru3gYxo9YdtOx1sQwvNzc'
 chat_id = '-1001704309348'
@@ -42,7 +40,10 @@ def kick_user(user_id):
 
 
 def index(request):
-    context = {}
+    data = os.environ.get('REDIS_URL', 'redis://localhost:6379')
+    context = {
+        'data': data
+    }
     return render(request, "index.html", context)
 
 
