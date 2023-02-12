@@ -27,7 +27,7 @@ SECRET_KEY = 'qkmseu9oximezobg5j6ux&t!b$2rn+thmtd^=a62r-jsu2)qp='
 AWS_ACCESS_KEY_ID = 'AKIAX72C3EPOIP27KWYD'
 AWS_SECRET_ACCESS_KEY = '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'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
