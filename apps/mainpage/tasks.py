@@ -22,4 +22,5 @@ def date_kick():
             requests.post(url)
             data += user.username + ","
         user.delete()
+    print(f'data')
     return data
