@@ -104,8 +104,8 @@ app = Celery('core')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
-CELERY_BROKER_URL = "redis://ec2-3-248-94-150.eu-west-1.compute.amazonaws.com:29200/0"
-CELERY_RESULT_BACKEND = "redis://ec2-3-248-94-150.eu-west-1.compute.amazonaws.com:29200/0"
+CELERY_BROKER_URL = "redis://:ped64b39e7a5cdf3d55c70f774397a97f5fd7ebeddee2af4ce6a96eb6bd935352@ec2-3-248-94-150.eu-west-1.compute.amazonaws.com:29200/0"
+CELERY_RESULT_BACKEND = "redis://:ped64b39e7a5cdf3d55c70f774397a97f5fd7ebeddee2af4ce6a96eb6bd935352@ec2-3-248-94-150.eu-west-1.compute.amazonaws.com:29200/0"
 
 DATABASES = {
     'default': {
