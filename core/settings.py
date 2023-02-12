@@ -53,7 +53,6 @@ THIRD_PARTY_APPS = [
     'collectfast',
     'corsheaders',
     'modeltranslation',
-    'django_q',
 ]
 
 LOCAL_APPS = [
@@ -62,16 +61,6 @@ LOCAL_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
-
-DJANGO_Q_CLUSTER = {
-    'name': 'my-cluster',
-    'workers': 4,
-    'timeout': 90,
-    'retry': 600,
-    'queue_limit': 50,
-    'bulk': 10,
-    'orm': 'default'
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -254,3 +243,11 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
+# Celery base setup
+CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379')
+CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', 'redis://localhost:6379')
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
