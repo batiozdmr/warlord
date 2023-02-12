@@ -1,16 +1,15 @@
 from django.contrib.auth.models import Group
 from django.utils.translation import get_language
 
-from apps.mainpage.models import MainPage
+
 from apps.parameter.models import Menu, SiteSettings
 
 
 def site(request):
     site_settings = SiteSettings.objects.last()
-    main_page = MainPage.objects.last()
     urlObject = request.get_host()
     url = request.build_absolute_uri()
-    return {'site_settings': site_settings, 'main_page': main_page, 'showURL': urlObject, 'URL': url,}
+    return {'site_settings': site_settings, 'showURL': urlObject, 'URL': url,}
 
 
 def menu(request):
