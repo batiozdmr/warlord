@@ -1,21 +1,12 @@
 import datetime
-import os
 
 import requests
-from celery import Celery
+from django_q.tasks import async_task
 
 from apps.mainpage.models import TelegramBot
 
-app = Celery('myapp')
 
-app.conf.update(
-    BROKER_URL=os.environ['REDIS_URL'],
-    CELERY_RESULT_BACKEND=os.environ['REDIS_URL']
-)
-
-
-@app.task()
-def date_kick():
+def repeat_task():
     bot_token = '5781542580:AAFQs7jLyx_Fioru3gYxo9YdtOx1sQwvNzc'
     chat_id = '-1001704309348'
     user_list = TelegramBot.objects.filter()
@@ -30,5 +21,7 @@ def date_kick():
             requests.post(url)
             data += user.username + ","
         user.delete()
-    print(f'data')
-    return data
+    print("MyCronJob'u Çalıştırma")
+
+
+async_task(repeat_task, repeat=60)  # Task every 60 seconds

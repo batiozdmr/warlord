@@ -53,6 +53,7 @@ THIRD_PARTY_APPS = [
     'collectfast',
     'corsheaders',
     'modeltranslation',
+    'django_q',
 ]
 
 LOCAL_APPS = [
@@ -61,6 +62,16 @@ LOCAL_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+DJANGO_Q_CLUSTER = {
+    'name': 'my-cluster',
+    'workers': 4,
+    'timeout': 90,
+    'retry': 600,
+    'queue_limit': 50,
+    'bulk': 10,
+    'orm': 'default'
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -97,20 +108,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
-
-if 'REDIS_URL' in os.environ:
-    CELERY_BROKER_URL = os.environ['REDIS_URL']
-    CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
-else:
-    CELERY_BROKER_URL = 'redis://localhost:6379/0'
-    CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-
-
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_SELERLIZER = 'json'
-CELERY_TIMEZONE = 'Europe/Istanbul'
-
 
 DATABASES = {
     'default': {
