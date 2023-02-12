@@ -10,7 +10,7 @@ from apps.mainpage.models import TelegramBot
 app = Celery('tasks', broker=os.environ['REDIS_URL'])
 
 
-@shared_task
+@app.task()
 def date_kick():
     bot_token = '5781542580:AAFQs7jLyx_Fioru3gYxo9YdtOx1sQwvNzc'
     chat_id = '-1001704309348'
