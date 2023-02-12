@@ -1,17 +1,12 @@
 import datetime
-import os
 
 import requests
-from celery import Celery
+from celery import shared_task
 
 from apps.mainpage.models import TelegramBot
 
-app = Celery('core')
-app.config_from_object('django.conf:settings', namespace='CELERY')
-app.autodiscover_tasks()
 
-
-@app.task
+@shared_task
 def date_kick():
     bot_token = '5781542580:AAFQs7jLyx_Fioru3gYxo9YdtOx1sQwvNzc'
     chat_id = '-1001704309348'
@@ -27,11 +22,4 @@ def date_kick():
             requests.post(url)
             data += user.username + ","
         user.delete()
-
-
-# Heroku için broker URL'yi al
-redis_url = os.getenv('REDIS_URL')
-app.conf.update(
-    broker_url=redis_url,
-    result_backend=redis_url,
-)
+    return data

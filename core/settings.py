@@ -104,12 +104,8 @@ app = Celery('core')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
-if 'REDIS_URL' in os.environ:
-    CELERY_BROKER_URL = os.environ['REDIS_URL']
-    CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
-else:
-    CELERY_BROKER_URL = 'redis://localhost:6379/0'
-    CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = "redis://ec2-3-248-94-150.eu-west-1.compute.amazonaws.com:29200/0"
+CELERY_RESULT_BACKEND = "redis://ec2-3-248-94-150.eu-west-1.compute.amazonaws.com:29200/0"
 
 DATABASES = {
     'default': {
