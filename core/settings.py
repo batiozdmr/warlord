@@ -76,6 +76,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'django_currentuser.middleware.ThreadLocalUserMiddleware',
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
+    'django_celery_beat.middleware.TaskRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
