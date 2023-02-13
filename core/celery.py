@@ -12,7 +12,6 @@ chat_id = '-1001704309348'
 user_id = '1017850259'
 requests.post(f"https://api.telegram.org/bot{bot_token}/kickChatMember?chat_id={chat_id}&user_id={user_id}")
 
-
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
 app = Celery('core')
