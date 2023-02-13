@@ -13,6 +13,8 @@ from pathlib import Path
 from celery import Celery
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+import core.celery
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -76,7 +78,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'django_currentuser.middleware.ThreadLocalUserMiddleware',
     'django.contrib.sites.middleware.CurrentSiteMiddleware',
-    'django_celery_beat.middleware.TaskRequestMiddleware',
+    'django_celery_beat.m',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -98,8 +100,6 @@ TEMPLATES = [
         },
     },
 ]
-
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -248,6 +248,8 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
+CELERY_APP = 'core.celery:app'
 
 # Celery base setup
 CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379')
