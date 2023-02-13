@@ -53,6 +53,8 @@ THIRD_PARTY_APPS = [
     'collectfast',
     'corsheaders',
     'modeltranslation',
+    'django_celery_beat',
+    'celery',
 ]
 
 LOCAL_APPS = [
@@ -95,6 +97,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
