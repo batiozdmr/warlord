@@ -55,7 +55,7 @@ THIRD_PARTY_APPS = [
     'collectfast',
     'corsheaders',
     'modeltranslation',
-    'django_celery_beat',
+    'django_celery_heartbeat',
     'celery',
 ]
 
