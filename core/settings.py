@@ -245,8 +245,8 @@ CKEDITOR_CONFIGS = {
 }
 
 # Celery base setup
-CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379')
-CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', 'redis://localhost:6379')
+CELERY_BROKER_URL = 'redis://:ped64b39e7a5cdf3d55c70f774397a97f5fd7ebeddee2af4ce6a96eb6bd935352@ec2-3-248-94-150.eu-west-1.compute.amazonaws.com:29200'
+CELERY_RESULT_BACKEND = 'redis://:ped64b39e7a5cdf3d55c70f774397a97f5fd7ebeddee2af4ce6a96eb6bd935352@ec2-3-248-94-150.eu-west-1.compute.amazonaws.com:29200'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
